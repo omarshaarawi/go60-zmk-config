@@ -376,7 +376,7 @@
    &mt LCTRL ESC   &kp A      &kp S       &kp D       &kp F   &kp G                                                                                                                &kp H         &kp J         &kp K     &kp L  &colon_semi       &mt RCTRL SQT
  &td_LAYER_Magic   &kp Z      &kp X       &kp C       &kp V   &kp B                                                                                                                &kp N         &kp M     &kp COMMA   &kp DOT  &kp FSLH        &tog LAYER_nums
                           &kp GRAVE   &kp LALT    &kp BSPC                                                                                                                                  &kp LBKT      &kp RBKT  &kp BSLH
-                                                                      &kp TAB  &kp LGUI  &sk LSHFT  &mo LAYER_symbols  &mt LG(LA(LS(LCTRL))) RET  &lt LAYER_nav SPACE
+                                                                      &kp TAB  &kp LGUI  &sk LSHFT  &lt LAYER_symbols RSHIFT  &mt LG(LA(LS(LCTRL))) RET  &lt LAYER_nav SPACE
             >;
         };
 
