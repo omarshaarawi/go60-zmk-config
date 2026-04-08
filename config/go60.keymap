@@ -333,6 +333,16 @@
             tapping-term-ms = <200>;
             bindings = <&mo>, <&rgb_ug_status_macro>;
         };
+
+        /* Hold = mod (e.g. Hyper), tap = sticky key (e.g. one-shot Shift) */
+        hyper_sk: hyper_sk {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HYPER_STICKY";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&kp>, <&sk>;
+        };
     };
 };
 
@@ -399,7 +409,7 @@
    &mt LCTRL ESC   &kp A      &kp S       &kp D       &kp F   &kp G                                                                                                                &kp H         &kp J         &kp K     &kp L  &colon_semi       &mt RCTRL SQT
  &td_LAYER_Magic   &kp Z      &kp X       &kp C       &kp V   &kp B                                                                                                                &kp N         &kp M     &kp COMMA   &kp DOT  &kp FSLH        &tog LAYER_nums
                           &kp GRAVE   &kp LALT    &kp BSPC                                                                                                                                  &kp LBKT      &kp RBKT  &kp BSLH
-                                                                      &kp TAB  &kp LGUI  &sk LSHFT  &mt LG(LA(LS(LCTRL))) RSHIFT  &lt LAYER_nav RET  &lt LAYER_symbols SPACE
+                                                                      &kp TAB  &kp LGUI  &sk LSHFT  &hyper_sk LG(LA(LS(LCTRL))) RSHIFT  &lt LAYER_nav RET  &lt LAYER_symbols SPACE
             >;
         };
 
