@@ -193,6 +193,29 @@
             bindings
                 = <&rgb_ug RGB_STATUS>;
         };
+
+        /* Code digraph macros — fired by combos below */
+        m_fat_arrow:  m_fat_arrow  { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp EQUAL &kp GT>; };
+        m_thin_arrow: m_thin_arrow { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp MINUS &kp GT>; };
+        m_dbl_colon:  m_dbl_colon  { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp COLON &kp COLON>; };
+        m_neq:        m_neq        { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp EXCL  &kp EQUAL>; };
+        m_eqeq:       m_eqeq       { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp EQUAL &kp EQUAL>; };
+        m_and_and:    m_and_and    { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp AMPS  &kp AMPS>; };
+        m_or_or:      m_or_or      { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp PIPE  &kp PIPE>; };
+    };
+};
+
+/ {
+    combos {
+        compatible = "zmk,combos";
+        /* Vertical combos on the base layer — least likely to misfire during normal typing */
+        combo_fat_arrow  { timeout-ms = <30>; key-positions = <31 43>; bindings = <&m_fat_arrow>;  layers = <0>; }; /* J + M  -> => */
+        combo_thin_arrow { timeout-ms = <30>; key-positions = <32 44>; bindings = <&m_thin_arrow>; layers = <0>; }; /* K + ,  -> -> */
+        combo_dbl_colon  { timeout-ms = <30>; key-positions = <27 39>; bindings = <&m_dbl_colon>;  layers = <0>; }; /* D + C  -> :: */
+        combo_neq        { timeout-ms = <30>; key-positions = <26 38>; bindings = <&m_neq>;        layers = <0>; }; /* S + X  -> != */
+        combo_eqeq       { timeout-ms = <30>; key-positions = <25 37>; bindings = <&m_eqeq>;       layers = <0>; }; /* A + Z  -> == */
+        combo_and_and    { timeout-ms = <30>; key-positions = <28 40>; bindings = <&m_and_and>;    layers = <0>; }; /* F + V  -> && */
+        combo_or_or      { timeout-ms = <30>; key-positions = <29 41>; bindings = <&m_or_or>;      layers = <0>; }; /* G + B  -> || */
     };
 };
 
@@ -376,7 +399,7 @@
    &mt LCTRL ESC   &kp A      &kp S       &kp D       &kp F   &kp G                                                                                                                &kp H         &kp J         &kp K     &kp L  &colon_semi       &mt RCTRL SQT
  &td_LAYER_Magic   &kp Z      &kp X       &kp C       &kp V   &kp B                                                                                                                &kp N         &kp M     &kp COMMA   &kp DOT  &kp FSLH        &tog LAYER_nums
                           &kp GRAVE   &kp LALT    &kp BSPC                                                                                                                                  &kp LBKT      &kp RBKT  &kp BSLH
-                                                                      &kp TAB  &kp LGUI  &sk LSHFT  &lt LAYER_symbols RSHIFT  &mt LG(LA(LS(LCTRL))) RET  &lt LAYER_nav SPACE
+                                                                      &kp TAB  &kp LGUI  &sk LSHFT  &mt LG(LA(LS(LCTRL))) RSHIFT  &lt LAYER_nav RET  &lt LAYER_symbols SPACE
             >;
         };
 
@@ -390,7 +413,7 @@
   */
   &trans     &kp F1    &kp F2    &kp F3     &kp F4  &kp F5                                                          &kp F6     &kp F7      &kp F8      &kp F9        &kp F10  &trans
  &trans    &kp F11   &kp F12     &none      &none   &none                                                     &kp LS(N8)     &kp N7      &kp N8      &kp N9  &kp LS(EQUAL)  &kp EQUAL
- &trans  &kp LCTRL  &kp LALT  &kp LGUI  &kp LSHFT   &none                                                  &kp LS(SEMI)     &kp N4      &kp N5      &kp N6      &kp MINUS  &trans
+ &trans  &kp LCTRL  &kp LALT  &kp LGUI  &kp LSHFT   &none                                                         &kp N0     &kp N4      &kp N5      &kp N6      &kp MINUS  &trans
  &trans      &none     &none     &none      &none   &none                                                       &kp DOT     &kp N1      &kp N2      &kp N3      &kp COMMA  &tog LAYER_nums
                        &trans    &trans     &trans                                                                        &kp SPACE   &kp COMMA     &kp DOT
                                                            &trans  &trans  &trans  &trans  &trans  &kp N0
@@ -417,24 +440,27 @@
         layer_symbols {
             bindings = <
  /*
-  * SYMBOLS — hold RH_T3 to activate
+  * SYMBOLS — hold SPACE (RH_T1) to activate.
   *
-  * Left hand types symbols, right hand has editing keys.
-  * Right thumb activates, left hand types = correct ergonomic split.
+  * Left hand = symbols (grouped by code-frequency, mirrored bracket pairs).
+  * Right hand = nav / edit cluster.
   *
-  *   Row 1: ` ( ) ; ,
-  *   Row 2: ! { ' " } ?
-  *   Row 3: # ^ = _ $ *
-  *   Row 4: @ < | - > /
-  *   Row 5: [ ] +
-  *   Thumbs: % : (shift) (held) Cmd+Shift+Enter Ctrl+^6
+  * ┌──────┬──────┬──────┬──────┬──────┬──────┐    ┌──────┬──────┬──────┬──────┬──────┬──────┐
+  * │      │  !   │  @   │  #   │  $   │  %   │    │  ^   │  &   │  *   │      │      │      │
+  * ├──────┼──────┼──────┼──────┼──────┼──────┤    ├──────┼──────┼──────┼──────┼──────┼──────┤
+  * │      │  \   │  {   │  }   │  |   │  `   │    │ Home │ PgDn │ PgUp │ End  │      │      │
+  * ├──────┼──────┼──────┼──────┼──────┼──────┤    ├──────┼──────┼──────┼──────┼──────┼──────┤
+  * │ Esc  │  =   │  (   │  )   │  -   │  +   │    │ Left │ Down │  Up  │ Right│  ;   │  '   │
+  * ├──────┼──────┼──────┼──────┼──────┼──────┤    ├──────┼──────┼──────┼──────┼──────┼──────┤
+  * │      │  ~   │  [   │  ]   │  _   │  /   │    │      │      │  <   │  >   │  ?   │      │
+  * └──────┴──────┴──────┴──────┴──────┴──────┘    └──────┴──────┴──────┴──────┴──────┴──────┘
   */
-     &trans      &kp GRAVE    &kp LS(N9)            &kp LS(N0)       &kp SEMI     &kp COMMA                                                                                   &none         &none                 &none      &none    &none  &trans
- &kp LS(N1)   &kp LS(LBKT)       &kp SQT  &kp LS(SINGLE_QUOTE)   &kp LS(RBKT)  &kp LS(FSLH)                                                                                &kp SEMI  &kp LS(LBKT)  &kp LS(SINGLE_QUOTE)    &kp SQT    &none   &none
- &kp LS(N3)     &kp LS(N6)     &kp EQUAL         &kp LS(MINUS)     &kp LS(N4)    &kp LS(N8)                                                                                 &kp DOT      &kp BSPC               &kp TAB  &kp SPACE  &kp RET   &none
- &kp LS(N2)  &kp LS(COMMA)  &kp LS(BSLH)             &kp MINUS    &kp LS(DOT)      &kp FSLH                                                                                &kp FSLH       &kp DEL           &kp LS(TAB)      &none    &none   &none
-                                &kp LBKT              &kp RBKT  &kp LS(EQUAL)                                                                                                              &trans                &trans     &trans
-                                                                                             &kp LS(N5)  &kp LS(SEMI)  &kp EQUAL  &trans  &kp LG(LS(RET))  &kp LS(LC(N6))
+ &trans          &kp EXCL   &kp AT     &kp HASH   &kp DLLR    &kp PRCNT                                                                              &kp CARET  &kp AMPS   &kp STAR   &trans      &trans     &trans
+ &trans          &kp BSLH   &kp LBRC   &kp RBRC   &kp PIPE    &kp GRAVE                                                                              &kp HOME   &kp PG_DN  &kp PG_UP  &kp END     &trans     &trans
+ &mt LCTRL ESC   &kp EQUAL  &kp LPAR   &kp RPAR   &kp MINUS   &kp PLUS                                                                               &kp LEFT   &kp DOWN   &kp UP     &kp RIGHT   &kp SEMI   &kp SQT
+ &trans          &kp TILDE  &kp LBKT   &kp RBKT   &kp UNDER   &kp FSLH                                                                               &trans     &trans     &kp LT     &kp GT      &kp QMARK  &trans
+                            &trans     &trans     &trans                                                                                                        &trans     &trans     &trans
+                                                                          &trans  &trans  &trans  &trans  &trans  &trans
             >;
         };
 
@@ -451,3 +477,4 @@
 
     };
 };
+
