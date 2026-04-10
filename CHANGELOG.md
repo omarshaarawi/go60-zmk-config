@@ -45,12 +45,14 @@ Left hand:                          Right hand (editing):
 Right hand homerow is a Glove80-style editing cluster (bksp/del/tab/space/enter)
 so you can type symbols left and edit right without leaving the layer.
 
-### Base layer: `- ( )` on left row 5, Bksp to thumb
+### Base layer: `- ( )` on left row 5, Bksp to thumb, Alt to right pinky
 
 Left row 5 is now `- ( )`, matching Glove80's bottom row layout (`~ - ( )`
 minus tilde, which lives on the symbols layer). Bksp moved to LH_T1 thumb
-(same as Glove80). `[ ] \` restored on right row 5. Duplicate Tab and
-dedicated Alt both removed from base (Alt remains on nav homerow).
+(same as Glove80). `[ ] \` restored on right row 5. Duplicate Tab removed.
+
+Right pinky row 2 changed from `-_` (now redundant) to `&kp LALT`, restoring
+Alt+letter combos on base (Alt+b/f for word nav, Alt+Bksp for delete-word).
 
 ### Magic layer additions
 
