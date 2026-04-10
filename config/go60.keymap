@@ -397,19 +397,19 @@
   * ├───────┼──────┼──────┼──────┼──────┼──────┤                              ├──────┼──────┼──────┼──────┼──────┼──────────┤
   * │ Magic │  Z   │  X   │  C   │  V   │  B   │                              │  N   │  M   │  , < │  . > │  / ? │ Num tog  │
   * └───────┴──────┼──────┼──────┼──────┘──────┘                              └──────┴──────┼──────┼──────┼──────┴──────────┘
-  *                │  `~  │ Alt  │ Bksp │                                             │  (   │  )   │  \|  │
+  *                │  (   │  )   │ Bksp │                                             │  [   │  ]   │  \|  │
   *                └──────┴──────┴──────┘                                             └──────┴──────┴──────┘
   *
   *                              ┌──────┬──────┬────────┐  ┌──────┬───────────┬──────────┐
-  *                              │ Tab  │ Cmd  │Sk Shft │  │ Sym  │ Sym/Enter │ Nav/Spc  │
+  *                              │ Alt  │ Cmd  │Sk Shft │  │ Sym  │ Sym/Enter │ Nav/Spc  │
   *                              └──────┴──────┴────────┘  └──────┴───────────┴──────────┘
   */
        &kp EQUAL  &kp N1     &kp N2      &kp N3      &kp N4  &kp N5                                                                                                               &kp N6        &kp N7        &kp N8    &kp N9    &kp N0  &kp LG(LA(LS(LC(K))))
          &kp TAB   &kp Q      &kp W       &kp E       &kp R   &kp T                                                                                                                &kp Y         &kp U         &kp I     &kp O     &kp P              &kp MINUS
    &mt LCTRL ESC   &kp A      &kp S       &kp D       &kp F   &kp G                                                                                                                &kp H         &kp J         &kp K     &kp L  &colon_semi       &mt RCTRL SQT
  &td_LAYER_Magic   &kp Z      &kp X       &kp C       &kp V   &kp B                                                                                                                &kp N         &kp M     &kp COMMA   &kp DOT  &kp FSLH        &tog LAYER_nums
-                          &kp GRAVE   &kp LALT    &kp BSPC                                                                                                                                  &kp LS(N9)    &kp LS(N0)  &kp BSLH
-                                                                      &kp TAB  &kp LGUI  &sk LSHFT  &hyper_sk LG(LA(LS(LCTRL))) RSHIFT  &lt LAYER_symbols RET  &lt LAYER_nav SPACE
+                          &kp LS(N9)  &kp LS(N0)  &kp BSPC                                                                                                                                  &kp LBKT      &kp RBKT    &kp BSLH
+                                                                      &kp LALT  &kp LGUI  &sk LSHFT  &hyper_sk LG(LA(LS(LCTRL))) RSHIFT  &lt LAYER_symbols RET  &lt LAYER_nav SPACE
             >;
         };
 
@@ -459,23 +459,23 @@
  /*
   * SYMBOLS — hold Enter (RH_T2) to activate.
   *
-  * Left hand = symbols (grouped by code-frequency, mirrored bracket pairs).
-  * Right hand = editing cluster (Glove80-style: bksp/del/tab on homerow).
+  * Left hand = symbols (Glove80 homerow: # ^ = _ $ *).
+  * Right hand = editing cluster (bksp/del/tab on homerow).
   *
   * ┌──────┬──────┬──────┬──────┬──────┬──────┐    ┌──────┬──────┬──────┬──────┬──────┬──────┐
-  * │      │  !   │  @   │  #   │  $   │  %   │    │  ^   │  &   │  *   │      │      │      │
+  * │      │  !   │  @   │  (   │  )   │  +   │    │  ^   │  &   │  *   │      │      │      │
   * ├──────┼──────┼──────┼──────┼──────┼──────┤    ├──────┼──────┼──────┼──────┼──────┼──────┤
   * │      │  \   │  {   │  }   │  |   │  `   │    │      │      │      │      │      │      │
   * ├──────┼──────┼──────┼──────┼──────┼──────┤    ├──────┼──────┼──────┼──────┼──────┼──────┤
-  * │ Esc  │  =   │  (   │  )   │  -   │  +   │    │  .   │ Bksp │ Tab  │ Spc  │ Ret  │      │
+  * │  #   │  ^   │  =   │  _   │  $   │  *   │    │  .   │ Bksp │ Tab  │ Spc  │ Ret  │      │
   * ├──────┼──────┼──────┼──────┼──────┼──────┤    ├──────┼──────┼──────┼──────┼──────┼──────┤
-  * │      │  ~   │  [   │  ]   │  _   │  /   │    │  /   │ Del  │ STab │      │  ?   │      │
+  * │      │  ~   │  [   │  ]   │  -   │  /   │    │  /   │ Del  │ STab │      │  ?   │      │
   * └──────┴──────┴──────┴──────┴──────┴──────┘    └──────┴──────┴──────┴──────┴──────┴──────┘
   */
- &trans          &kp EXCL   &kp AT     &kp HASH   &kp DLLR    &kp PRCNT                                                                              &kp CARET  &kp AMPS    &kp STAR    &none       &none      &trans
- &trans          &kp BSLH   &kp LBRC   &kp RBRC   &kp PIPE    &kp GRAVE                                                                              &none      &none       &none       &none       &none      &trans
- &mt LCTRL ESC   &kp EQUAL  &kp LPAR   &kp RPAR   &kp MINUS   &kp PLUS                                                                               &kp DOT    &kp BSPC    &kp TAB    &kp SPACE   &kp RET    &none
- &trans          &kp TILDE  &kp LBKT   &kp RBKT   &kp UNDER   &kp FSLH                                                                               &kp FSLH   &kp DEL     &kp LS(TAB) &none      &kp QMARK  &trans
+ &trans      &kp EXCL   &kp AT     &kp LPAR   &kp RPAR    &kp PLUS                                                                               &kp CARET  &kp AMPS    &kp STAR    &none       &none      &trans
+ &trans      &kp BSLH   &kp LBRC   &kp RBRC   &kp PIPE    &kp GRAVE                                                                              &none      &none       &none       &none       &none      &trans
+ &kp HASH    &kp CARET  &kp EQUAL  &kp UNDER  &kp DLLR    &kp STAR                                                                               &kp DOT    &kp BSPC    &kp TAB    &kp SPACE   &kp RET    &none
+ &trans      &kp TILDE  &kp LBKT   &kp RBKT   &kp MINUS   &kp FSLH                                                                               &kp FSLH   &kp DEL     &kp LS(TAB) &none      &kp QMARK  &trans
                             &trans     &trans     &trans                                                                                                        &trans      &trans      &trans
                                                                           &trans  &trans  &trans  &trans  &trans  &trans
             >;

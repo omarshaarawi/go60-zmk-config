@@ -29,17 +29,27 @@ common in code; brackets remain on the symbols layer.
 - Added `&kp LCTRL` to left homerow (full mod set: Ctrl, Alt, Cmd, Shift).
 - Removed duplicate `&kp UP` from row 2 that served no purpose.
 
-### Symbols layer right hand → editing cluster
+### Symbols layer rewrite
 
-Replaced the nav/arrow keys (now redundant after thumb swap) with a
-Glove80-style editing cluster:
+Ported the Glove80 symbols homerow to Go60: `# ^ = _ $ *` on the left
+homerow (strongest fingers). Displaced symbols reshuffled:
 
 ```
-Row 3 (homerow):  .  Bksp  Tab  Space  Enter
-Row 4:            /  Del   S-Tab        ?
+Left hand:                          Right hand (editing):
+! @ ( ) +                           ^ & *
+\ { } | `                           (empty — room for neovim bindings)
+# ^ = _ $ *  ← Glove80 homerow     . Bksp Tab Spc Ret
+~ [ ] - /                           / Del  S-Tab    ?
 ```
 
-Type symbols on the left, edit on the right, without leaving the layer.
+Right hand homerow is a Glove80-style editing cluster (bksp/del/tab/space/enter)
+so you can type symbols left and edit right without leaving the layer.
+
+### Base layer: parens to left, kill duplicate Tab
+
+Moved `( )` from right row 5 to left row 5 (matching Glove80's left-hand
+bottom row). Restored `[ ] \` on right row 5. Replaced the duplicate Tab
+on LH_T1 thumb with Alt (moved from row 5, where parens now live).
 
 ### Magic layer additions
 
