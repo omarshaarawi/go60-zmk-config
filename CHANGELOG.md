@@ -2,6 +2,50 @@
 
 Personal customizations on top of the stock MoErgo Go60 keymap. Newest first.
 
+## Glove80 parity pass
+
+Brought Go60 closer to the Glove80 layout to reduce muscle memory friction
+when switching between boards.
+
+### Thumb layer swap
+
+Swapped `LAYER_nav` and `LAYER_symbols` on the right thumbs so Space-hold
+activates nav and Enter-hold activates symbols, matching Glove80's
+`&lt LAYER_arrows SPACE` thumb assignment.
+
+| Thumb | Before | After |
+|---|---|---|
+| RH_T2 | `&lt LAYER_nav RET` | `&lt LAYER_symbols RET` |
+| RH_T1 | `&lt LAYER_symbols SPACE` | `&lt LAYER_nav SPACE` |
+
+### Row 5 right: brackets → parens
+
+`[ ]` replaced with `( )` on the base layer bottom row. Parens are far more
+common in code; brackets remain on the symbols layer.
+
+### Nav layer improvements
+
+- Added Home / PgDn / PgUp / End on row 2 right hand (were only on symbols).
+- Added `&kp LCTRL` to left homerow (full mod set: Ctrl, Alt, Cmd, Shift).
+- Removed duplicate `&kp UP` from row 2 that served no purpose.
+
+### Symbols layer right hand → editing cluster
+
+Replaced the nav/arrow keys (now redundant after thumb swap) with a
+Glove80-style editing cluster:
+
+```
+Row 3 (homerow):  .  Bksp  Tab  Space  Enter
+Row 4:            /  Del   S-Tab        ?
+```
+
+Type symbols on the left, edit on the right, without leaving the layer.
+
+### Magic layer additions
+
+- Screenshot (`Cmd+Shift+4`) and MacLock (`Cmd+Ctrl+Q`) added to row 1
+  right side, replacing two `&none` slots.
+
 ## RH_T3: hold = Hyper, tap = sticky RShift
 
 Plain `&mt` couldn't capitalize via tap (mod-tap shift releases before the next
